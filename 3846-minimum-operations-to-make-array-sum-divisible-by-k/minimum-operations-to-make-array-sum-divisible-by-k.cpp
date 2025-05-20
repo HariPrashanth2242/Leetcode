@@ -4,11 +4,7 @@ public:
         int sum=0;
         for(int i=0;i<nums.size();i++) sum+=nums[i];
         cout<<sum;
-        int op=sum%k;
-        sort(nums.begin(), nums.end(), [](int a, int b) {
-            return a < b;
-        });
-        
+        int op=sum%k;        
     return op;
     }
     
