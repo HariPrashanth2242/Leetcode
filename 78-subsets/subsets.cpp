@@ -1,30 +1,21 @@
 class Solution {
 public:
-    vector<vector<int>> ans;
-
     vector<vector<int>> subsets(vector<int>& nums) {
-        vector<int> current;
-        helper(current, nums);
+        vector<vector<int>> ans;
+        vector<int> comb;
+        generate(nums,0,comb,ans);
         return ans;
     }
 
-    void helper(vector<int>& a, vector<int> b) {
-
-        ans.push_back(a);
-
-        for (int i = 0; i < b.size(); ++i) {
-            int z = b[i];
-
-            a.push_back(z);
-
-
-            vector<int> new_b(b.begin() + i + 1, b.end());
-
-
-            helper(a, new_b);
-
-
-            a.pop_back();
+    void generate(vector<int> &nums,int index, vector<int> &comb,vector<vector<int>> &ans){
+        if(index==nums.size()) {
+            ans.push_back(comb);
+            return;
         }
+
+        comb.push_back(nums[index]);
+        generate(nums,index+1,comb,ans);
+        comb.pop_back();
+        generate(nums,index+1,comb,ans);
     }
 };
